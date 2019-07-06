@@ -2,6 +2,8 @@
 
 FreshMvvm is a super light Mvvm Framework designed specifically for Xamarin.Forms. It's designed to be Easy, Simple and Flexible. 
 
+[![Build Status](https://libinjoseph.visualstudio.com/FreshMvvm/_apis/build/status/libin85.FreshMvvm?branchName=master)](https://libinjoseph.visualstudio.com/FreshMvvm/_build/latest?definitionId=4&branchName=master)
+
 ### How does it compare to other options?
 
 * It's super light and super simple
