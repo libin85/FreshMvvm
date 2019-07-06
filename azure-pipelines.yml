@@ -6,14 +6,35 @@
 trigger:
 - master
 
+pr:
+- master
+
+variables:
+  buildConfiguration: Release
+  buildPlatform: Any CPU
+  coreSolution: 'src\FreshMvvmCore.sln'
+  coreCSProj: 'src\FreshMvvm\*.csproj'
+
 pool:
-  vmImage: 'ubuntu-latest'
+    vmImage: vs2017-win2016
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: VSBuild@1
+  displayName: Nuget Restore
+  inputs:
+    solution: '$(coreSolution)'
+    configuration: '$(buildConfiguration)'
+    msbuildArgs: '/t:Restore'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: MSBuild@1
+  displayName: Build FreshMvvm Core Project
+  inputs:
+    solution: '$(coreSolution)'
+    configuration: '$(buildConfiguration)'
+
+- task: MSBuild@1
+  displayName: Build FreshMvvm Core Project
+  inputs:
+    solution: '$(coreSolution)'
+    configuration: '$(buildConfiguration)'
+
