@@ -20,14 +20,14 @@ pool:
     vmImage: vs2017-win2016
 
 steps:
-- task: VSBuild@1
-  displayName: Nuget Restore
-  inputs:
-    solution: '$(coreSolution)'
-    configuration: '$(buildConfiguration)'
-    msbuildArgs: '/t:Restore'
 
-- task: VSBuild@1
+- task: NuGetToolInstaller@0
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '**/*.sln'
+
+- task: MSBuild@1
   displayName: Build FreshMvvm Core Project
   inputs:
     solution: '$(coreSolution)'
