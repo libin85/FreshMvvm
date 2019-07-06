@@ -38,4 +38,5 @@ steps:
   inputs:
     solution: '$(testCSProj)'
     configuration: '$(buildConfiguration)'
+    restoreNugetPackages: true
 
