@@ -14,6 +14,7 @@ variables:
   buildPlatform: Any CPU
   coreSolution: 'src\FreshMvvmCore.sln'
   coreCSProj: 'src\FreshMvvm\*.csproj'
+  testCSProj: 'src\FreshMvvm.Tests\*.csproj'
 
 pool:
     vmImage: vs2017-win2016
@@ -33,8 +34,8 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - task: MSBuild@1
-  displayName: Build FreshMvvm Core Project
+  displayName: Build FreshMvvm Test Project
   inputs:
-    solution: '$(coreSolution)'
+    solution: '$(testCSProj)'
     configuration: '$(buildConfiguration)'
 
