@@ -31,6 +31,13 @@ steps:
     restoreSolution: '**/*.sln, src\FreshMvvm.Tests\packages.config'
     feedsToUse: 'select'
 
+- task: MSBuild@1
+  displayName: Build FreshMvvm Test Project
+  inputs:
+    solution: '$(testCSProj)'
+    configuration: '$(buildConfiguration)'
+    restoreNugetPackages: true
+
 - task: VSBuild@1
   displayName: Build FreshMvvm Core Project
   inputs:
