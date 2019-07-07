@@ -34,7 +34,7 @@ steps:
 - task: MSBuild@1
   displayName: Build FreshMvvm Test Project
   inputs:
-    solution: '$(testCSProj)'
+    solution: '$(coreSolution)'
     configuration: '$(buildConfiguration)'
     restoreNugetPackages: true
 
