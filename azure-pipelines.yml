@@ -21,12 +21,15 @@ pool:
 
 steps:
 
-- task: VSBuild@1
-  displayName: Nuget Restore
+- task: NuGetToolInstaller@1
   inputs:
-    solution: '$(coreSolution)'
-    configuration: '$(buildConfiguration)'
-    msbuildArgs: '/t:Restore'
+    versionSpec: '5.1.0'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln, src\FreshMvvm.Tests\packages.config'
+    feedsToUse: 'select'
 
 - task: VSBuild@1
   displayName: Build FreshMvvm Core Project
