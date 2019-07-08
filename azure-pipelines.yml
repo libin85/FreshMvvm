@@ -27,12 +27,21 @@ steps:
     configuration: '$(buildConfiguration)'
     msbuildArgs: '/t:Restore'
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   displayName: Build FreshMvvm Core Solution
   inputs:
-    solution: '$(coreSolution)'
+    command: 'build'
+    projects: '$(coreSolution)'
     configuration: '$(buildConfiguration)'
-    msbuildArgs: '/t:Pack'
+
+- task: DotNetCoreCLI@2
+  displayName:  dotnet pack
+  inputs:
+    command: 'pack'
+    arguments: '--configuration $(buildConfiguration)'
+    packagesToPack: '$(coreCSProj)'
+    nobuild: true
+    versioningScheme: 'off'
 
 - task: DotNetCoreCLI@2
   displayName: Run Unit Tests
@@ -42,11 +51,15 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - task: NuGetCommand@2
+  displayName: 'nuget push'
   inputs:
     command: 'push'
+    feedsToUse: 'select'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: '/22ade35f-89d3-4515-811a-b17e54ebbb0b'
+    publishVstsFeed: 'FreshMvvmTestFeed'
+    versioningScheme: 'off'
+    allowPackageConflicts: true
 
 
 
