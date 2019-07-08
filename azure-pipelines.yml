@@ -35,15 +35,8 @@ steps:
     restoreNugetPackages: true
     msbuildArgs: '/t:Pack'
 
-- task: VSTest@2
-  displayName: Run Unit Tests
-  inputs:
-    testAssemblyVer2: '$(testDll)'
-    configuration: '$(buildConfiguration)'
-    platform: '$(buildPlatform)'
-
 - task: DotNetCoreCLI@2
-  displayName: Run Unit Tests 1
+  displayName: Run Unit Tests
   inputs:
     command: test
     projects: 'src/FreshMvvm.Tests/*.csproj'
