@@ -32,7 +32,6 @@ steps:
   inputs:
     solution: '$(coreSolution)'
     configuration: '$(buildConfiguration)'
-    restoreNugetPackages: true
     msbuildArgs: '/t:Pack'
 
 - task: DotNetCoreCLI@2
