@@ -42,6 +42,12 @@ steps:
     configuration: '$(buildConfiguration)'
     platform: '$(buildPlatform)'
 
+- task: CopyFiles@2
+  displayName: Copy nuget package to Artifact Directory
+  inputs:
+    Contents: 'packages\*.nupkg'
+    TargetFolder: '$(build.artifactStagingDirectory)'
+
 
 
 
