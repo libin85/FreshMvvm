@@ -14,7 +14,7 @@ variables:
   buildPlatform: Any CPU
   coreSolution: 'src\FreshMvvmCore.sln'
   coreCSProj: 'src\FreshMvvm\*.csproj'
-  testCSProj: 'src\FreshMvvm.Tests\*.csproj'
+  testDll: 'src\FreshMvvm.Tests\bin\**\*.Tests.dll'
 
 pool:
     vmImage: vs2017-win2016
@@ -34,6 +34,17 @@ steps:
     configuration: '$(buildConfiguration)'
     restoreNugetPackages: true
     msbuildArgs: '/t:Pack'
+
+- task: VSTest@2
+  displayName: Run Unit Tests
+  inputs:
+    testAssemblyVer2: '$(testDll)'
+    configuration: '$(buildConfiguration)'
+    platform: '$(buildPlatform)'
+
+
+
+
 
 
 
