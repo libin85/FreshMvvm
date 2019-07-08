@@ -20,12 +20,12 @@ pool:
     vmImage: vs2017-win2016
 
 steps:
-
-- task: NuGetToolInstaller@1
+- task: VSBuild@1
+  displayName: Nuget Restore
   inputs:
-    versionSpec: '4.9.1'
-
-- script: dotnet restore
+    solution: '$(coreSolution)'
+    configuration: '$(buildConfiguration)'
+    msbuildArgs: '/t:Restore'
 
 - task: MSBuild@1
   displayName: Build FreshMvvm Test Project
