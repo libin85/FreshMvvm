@@ -25,11 +25,7 @@ steps:
   inputs:
     versionSpec: '4.9.1'
 
-- task: NuGetCommand@2
-  inputs:
-    command: 'restore'
-    restoreSolution: '**/*.sln, src\FreshMvvm.Tests\packages.config'
-    feedsToUse: 'select'
+- script: dotnet restore
 
 - task: MSBuild@1
   displayName: Build FreshMvvm Test Project
@@ -37,6 +33,7 @@ steps:
     solution: '$(coreSolution)'
     configuration: '$(buildConfiguration)'
     restoreNugetPackages: true
+    msbuildArguments: '/t:restore'
 
 - task: VSBuild@1
   displayName: Build FreshMvvm Core Project
