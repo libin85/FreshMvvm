@@ -27,20 +27,15 @@ steps:
     configuration: '$(buildConfiguration)'
     msbuildArgs: '/t:Restore'
 
-- task: MSBuild@1
-  displayName: Build FreshMvvm Test Project
-  inputs:
-    solution: '$(coreSolution)'
-    configuration: '$(buildConfiguration)'
-    restoreNugetPackages: true
-    msbuildArguments: '/t:restore'
-
 - task: VSBuild@1
-  displayName: Build FreshMvvm Core Project
+  displayName: Build FreshMvvm Core Solution
   inputs:
     solution: '$(coreSolution)'
     configuration: '$(buildConfiguration)'
     restoreNugetPackages: true
+    msbuildArgs: '/t:Pack'
+
+
 
 
 
