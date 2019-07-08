@@ -42,14 +42,12 @@ steps:
     configuration: '$(buildConfiguration)'
     platform: '$(buildPlatform)'
 
-- task: CopyFiles@2
-  displayName: Copy nuget package to Artifact Directory
+- task: NuGetCommand@2
   inputs:
-    Contents: 'packages\*.nupkg'
-    TargetFolder: '$(build.artifactStagingDirectory)'
-
-
-
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '/22ade35f-89d3-4515-811a-b17e54ebbb0b'
 
 
 
