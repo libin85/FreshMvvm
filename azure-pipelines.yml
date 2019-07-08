@@ -14,7 +14,7 @@ variables:
   buildPlatform: Any CPU
   coreSolution: 'src\FreshMvvmCore.sln'
   coreCSProj: 'src\FreshMvvm\*.csproj'
-  testDll: 'src\FreshMvvm.Tests\bin\**\*.Tests.dll'
+  testDll: 'src\FreshMvvm.Tests\bin\**\**\*.Tests.dll'
 
 pool:
     vmImage: vs2017-win2016
@@ -41,6 +41,12 @@ steps:
     testAssemblyVer2: '$(testDll)'
     configuration: '$(buildConfiguration)'
     platform: '$(buildPlatform)'
+
+- task: CopyFiles@2
+  displayName: Copy nuget package to Artifact Directory
+  inputs:
+    Contents: 'packages\*.nupkg'
+    TargetFolder: '$(build.artifactStagingDirectory)'
 
 
 
