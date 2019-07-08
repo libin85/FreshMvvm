@@ -54,9 +54,7 @@ steps:
     command: 'push'
     feedsToUse: 'select'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'internal'
     publishVstsFeed: 'FreshMvvmTestFeed'
-    versioningScheme: 'off'
     allowPackageConflicts: true
 
 
