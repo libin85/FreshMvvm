@@ -31,7 +31,7 @@ steps:
   displayName: Build FreshMvvm Core Solution
   inputs:
     command: 'build'
-    projects: '$(coreSolution)'
+    projects: '$(coreCSProj)'
     configuration: '$(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
