@@ -38,7 +38,7 @@ steps:
   displayName:  dotnet pack
   inputs:
     command: 'pack'
-    arguments: '--configuration $(buildConfiguration)'
+    configuration: '$(configuration)'
     packagesToPack: '$(coreCSProj)'
     nobuild: true
     versioningScheme: 'off'
