@@ -46,7 +46,7 @@ steps:
   displayName: Run Unit Tests 1
   inputs:
     command: test
-    projects: /src/FreshMvvm.Tests/*.csproj
+    projects: 'src/FreshMvvm.Tests/*.csproj'
     configuration: '$(buildConfiguration)'
 
 - task: NuGetCommand@2
